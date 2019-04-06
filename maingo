@@ -1,0 +1,38 @@
+package main
+
+import (
+	"github.com/HVCode/chappie/activation"
+	"github.com/HVCode/chappie/nnetwork"
+)
+
+//also called X
+var input = [][]float64{
+	{0, 0, 1},
+	{0, 1, 1},
+	{1, 0, 1},
+	{1, 1, 1},
+}
+
+//also called y
+var desiredOutput = [4]int8{0, 0, 1, 1}
+
+func main() {
+
+	test := new(nnetwork.NeuralNetwork)
+	test.SetInputAndOutputLayers(3, 1, activation.HLT{}, activation.HLT{})
+	test.SetAmountOfHideLayers(2)
+	test.SetHideLayers(0, 1, activation.HLT{})
+	test.SetHideLayers(1, 1, activation.HLT{})
+	//test.SetCostFunction()
+	/*
+			fmt.Println(test.InputLayer.Neurons[0].GetWidht())
+			fmt.Println(test.InputLayer.Neurons[1].GetWidht())
+			fmt.Println(test.InputLayer.Neurons[2].GetWidht())
+
+		fmt.Println(test.HideLayers[0].Neurons[0].GetWidht())
+		fmt.Println(test.HideLayers[1].Neurons[0].GetWidht())
+		fmt.Println(test.OutputLayer.Neurons[0].GetWidht())
+	*/
+
+	test.StartFeedForward(input[0])
+}
